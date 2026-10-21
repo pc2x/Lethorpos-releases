@@ -20,8 +20,12 @@ Descargas públicas de LethorPos para Windows y Android.
 1. En el repo `LethorPos`, ejecutar `build-installer.ps1`. Al terminar deja los archivos listos en
    `staging\v{version}\` de este repo (nombres estables, `SHA256SUMS.txt` y `notas.md`).
 2. Opcional: editar `staging\v{version}\notas.md` con los cambios de la versión.
-3. Ejecutar `subir-release.ps1` (toma la versión más reciente de `staging\`) o `subir-release.ps1 -Version 1.0.149`.
-   Con `-Borrador` crea el release como borrador para revisarlo antes de publicarlo.
+3. Doble clic en `subir-release.cmd` (o `subir-release.ps1 -Version 1.0.149` para una versión específica).
+   Sube archivo por archivo con barra de progreso (porcentaje, velocidad y tiempo restante) y publica el release
+   al terminar. Con `-Borrador` lo deja como borrador para revisarlo antes de publicarlo.
+   Si la subida se corta, vuelva a ejecutarlo: los archivos que ya están completos en GitHub se omiten.
+4. Para ver qué archivos ya están en GitHub y cuáles faltan, doble clic en `estado-release.cmd`
+   (se actualiza cada 30 segundos; Ctrl+C para salir).
 
 Requisitos de una sola vez: `winget install GitHub.cli` y `gh auth login` con una cuenta con permiso de
 escritura en `pc2x/Lethorpos-releases`.
