@@ -1,31 +1,63 @@
-# LethorPos - Releases
+# LethorPos - Descargas
 
-Descargas públicas de LethorPos para Windows y Android.
+Descargas oficiales de LethorPos, el punto de venta de LETHORSOFT, para Windows y Android.
 
-**Última versión:** https://github.com/pc2x/Lethorpos-releases/releases/latest
+**[Descargar la última versión](https://github.com/pc2x/Lethorpos-releases/releases/latest)**
 
-## Archivos de cada release
+Las versiones anteriores están en la sección [Releases](https://github.com/pc2x/Lethorpos-releases/releases).
 
-| Archivo | Qué es |
+## ¿Qué archivo descargo?
+
+| Si usted quiere... | Descargue |
 | --- | --- |
-| `LethorPos-Setup-v{version}.exe` | Instalador completo para Windows: aplicación, cliente ligero, PostgreSQL portable y dependencias. Para instalaciones nuevas. |
-| `LethorPos-Update-v{version}.exe` | Actualizador para Windows: solo la aplicación y el cliente ligero. Requiere una instalación previa con el instalador completo. |
-| `LethorPos-Android-v{version}.apk` | APK de Android con servidor incluido. |
-| `LethorPos-Cliente-Windows-v{version}.exe` | Cliente ligero para Windows (se conecta a un servidor LethorPos). |
-| `LethorPos-Cliente-Android-v{version}.apk` | Cliente ligero para Android (se conecta a un servidor LethorPos). |
-| `SHA256SUMS.txt` | Hashes SHA-256 para verificar las descargas. |
+| Instalar LethorPos por primera vez en una computadora con Windows | `LethorPos-Setup-v{version}.exe` |
+| Actualizar una computadora con Windows que ya tiene LethorPos | `LethorPos-Update-v{version}.exe` |
+| Usar una tableta o celular Android como punto de venta principal (servidor) | `LethorPos-Android-v{version}.apk` |
+| Usar otra computadora con Windows como caja o terminal adicional | `LethorPos-Cliente-Windows-v{version}.exe` |
+| Usar otra tableta o celular Android como terminal adicional | `LethorPos-Cliente-Android-v{version}.apk` |
 
-## Publicar una versión
+El **servidor** es el equipo principal donde se guarda la información del negocio (ventas, productos, usuarios).
+Los **clientes** son terminales adicionales que se conectan a ese servidor por la red local; no guardan datos propios.
 
-1. En el repo `LethorPos`, ejecutar `build-installer.ps1`. Al terminar deja los archivos listos en
-   `staging\v{version}\` de este repo (nombres estables, `SHA256SUMS.txt` y `notas.md`).
-2. Opcional: editar `staging\v{version}\notas.md` con los cambios de la versión.
-3. Doble clic en `subir-release.cmd` (o `subir-release.ps1 -Version 1.0.149` para una versión específica).
-   Sube archivo por archivo con barra de progreso (porcentaje, velocidad y tiempo restante) y publica el release
-   al terminar. Con `-Borrador` lo deja como borrador para revisarlo antes de publicarlo.
-   Si la subida se corta, vuelva a ejecutarlo: los archivos que ya están completos en GitHub se omiten.
-4. Para ver qué archivos ya están en GitHub y cuáles faltan, doble clic en `estado-release.cmd`
-   (se actualiza cada 30 segundos; Ctrl+C para salir).
+## Requisitos
 
-Requisitos de una sola vez: `winget install GitHub.cli` y `gh auth login` con una cuenta con permiso de
-escritura en `pc2x/Lethorpos-releases`.
+- **Windows:** Windows 10 u 11 de 64 bits. Se necesitan permisos de administrador para instalar.
+- **Android:** Android 10 o superior.
+- **Terminales cliente:** deben estar en la misma red que el servidor.
+
+## Instalación
+
+### Windows (servidor)
+
+1. Descargue `LethorPos-Setup-v{version}.exe`.
+2. Ejecútelo y siga los pasos del asistente. Incluye todo lo necesario, no hay que instalar nada más.
+3. Abra LethorPos desde el acceso directo del escritorio o del menú Inicio.
+
+### Actualizar en Windows
+
+1. Descargue `LethorPos-Update-v{version}.exe`.
+2. Ejecútelo. La información del negocio y la configuración se conservan.
+
+El actualizador solo funciona en equipos que ya tienen LethorPos instalado; para una instalación nueva use
+`LethorPos-Setup-v{version}.exe`.
+
+### Android
+
+1. Descargue el `.apk` desde el dispositivo.
+2. Ábralo y, si Android lo solicita, permita instalar aplicaciones de esta fuente.
+3. Para actualizar, instale el `.apk` de la versión nueva encima de la anterior; los datos se conservan.
+
+## Verificar la descarga (opcional)
+
+Cada versión incluye `SHA256SUMS.txt` con el código de verificación de cada archivo. En Windows puede
+comprobarlo desde PowerShell:
+
+```powershell
+Get-FileHash .\LethorPos-Setup-v{version}.exe -Algorithm SHA256
+```
+
+El resultado debe coincidir con el valor que aparece en `SHA256SUMS.txt` para ese archivo.
+
+## Soporte
+
+Para dudas, licencias o soporte técnico visite [www.lethorsoft.com](http://www.lethorsoft.com).
